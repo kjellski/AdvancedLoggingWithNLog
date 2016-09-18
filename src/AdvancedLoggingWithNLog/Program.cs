@@ -9,6 +9,7 @@ namespace AdvancedLoggingWithNLog
     {
         public static void Main(string[] args)
         {
+
         }
     }
 }
