@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<nlog xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform"
+      xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <extensions xdt:Transform="Insert">
+        <add assembly="Shared" />
+    </extensions>
+
+    <targets>
+        <target xdt:Transform="Insert"
+                xsi:type="TokenTimeThrottler"
+                name="throttledMailTarget"
+                ThrottleSeconds="10">
+
+            <target xsi:type="AsyncWrapper"
+                    queueLimit="500"
+                    overflowAction="Discard">
+
+                <target xsi:type="FallbackGroup"
+                        returnToFirstOnSuccess="true">
+
+                    <target xsi:type="Mail"
+                            subject="RL3 DEV - RemoteServer BBI - ${level:uppercase=true}"
+                            to="remotelab_3.0_error@flane.de"
+                            from="remotelab_3.0_error@flane.de"
+                            smtpServer="mail01.server.com"
+                            layout="${longdate}|${pad:padding=5:inner=${level:uppercase=true}}|${logger}|${message}|${exception:format=ToString}" />
+                    <target xsi:type="Mail"
+                            subject="RL3 DEV - RemoteServer BBI - ${level:uppercase=true}"
+                            to="remotelab_3.0_error@flane.de"
+                            from="remotelab_3.0_error@flane.de"
+                            smtpServer="mail01.server.com"
+                            layout="${longdate}|${pad:padding=5:inner=${level:uppercase=true}}|${logger}|${message}|${exception:format=ToString}" />
+                </target>
+            </target>
+        </target>
+    </targets>
+
+    <rules>
+        <logger
+            xdt:Transform="Insert"
+            name="*"
+            minlevel="Error"
+            writeTo="throttledMailTarget">
+
+            <filters>
+                <when
+                    condition="equals('${logger}','Shared.Remoting.RabbitMq.LogNEasyNetQLoggerBridge') and (level &lt; LogLevel.Warn)"
+                    action="Ignore" />
+                <when condition="equals('${logger}','RemoteServer.Cisco.*') and (level &lt; LogLevel.Warn)"
+                      action="Ignore" />
+            </filters>
+        </logger>
+    </rules>
+</nlog>
