@@ -30,9 +30,27 @@ namespace RealWorldExample
 
             Log.Trace("Sample trace message");
             Log.Debug("Sample debug message");
+            Log.Debug("Sample debug message");
+            Log.Debug("Sample debug message");
+
             Log.Info("Sample informational message");
+            Log.Info("Sample informational message");
+            Log.Info("Sample informational message");
+            Log.Info("Sample informational message");
+
             Log.Warn("Sample warning message");
+            Log.Warn("Sample warning message");
+            Log.Warn("Sample warning message");
+            Log.Warn("Sample warning message");
+
             Log.Error("Sample error message");
+            Log.Error("Sample error message");
+            Log.Error("Sample error message");
+            Log.Error("Sample error message");
+
+            Log.Fatal("Sample fatal error message");
+            Log.Fatal("Sample fatal error message");
+            Log.Fatal("Sample fatal error message");
             Log.Fatal("Sample fatal error message");
 
             // alternatively you can call the Log() method and pass log level as the parameter.

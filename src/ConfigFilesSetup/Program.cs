@@ -11,8 +11,10 @@ namespace ConfigFilesSetup
         {
             Log.Trace("Sample trace message");
             Log.Debug("Sample debug message");
+            Console.ReadLine();
             Log.Info("Sample informational message");
             Log.Warn("Sample warning message");
+            Console.ReadLine();
             Log.Error("Sample error message");
             Log.Fatal("Sample fatal error message");
 
