@@ -1,0 +1,1 @@
+﻿This project shows the simplest Approach to using NLog with a programmatic configuration.

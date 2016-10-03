@@ -1,0 +1,1 @@
+﻿This project shows the simplest Approach to using NLog with an implicit config file based configuration and how to debug the setup.
