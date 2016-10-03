@@ -1,13 +1,13 @@
 using System;
 using NLog;
 
-namespace Shared.Util.Logging
+namespace RealWorldExample.FastLane.Logging
 {
     public class ThrottledLogEntry
     {
-        public ThrottledLogEntry(string md5Sum, DateTime firstCaptured, DateTime lastCaptured, LogEventInfo logEventInfo, int count = 0)
+        public ThrottledLogEntry(string token, DateTime firstCaptured, DateTime lastCaptured, LogEventInfo logEventInfo, int count = 0)
         {
-            Md5Sum = md5Sum;
+            Token = token;
             FirstCaptured = firstCaptured;
             LastCaptured = lastCaptured;
             LogEventInfo = logEventInfo;
@@ -22,7 +22,7 @@ namespace Shared.Util.Logging
 
         public LogEventInfo LogEventInfo { get; }
 
-        public string Md5Sum { get; }
+        public string Token { get; }
 
         public void Increment()
         {

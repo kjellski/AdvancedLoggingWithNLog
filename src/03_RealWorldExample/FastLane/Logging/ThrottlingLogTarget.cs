@@ -3,7 +3,7 @@ using NLog.Config;
 using NLog.Targets;
 using NLog.Targets.Wrappers;
 
-namespace Shared.Util.Logging
+namespace RealWorldExample.FastLane.Logging
 {
     [Target("TokenTimeThrottler", IsCompound = true)]
     public class ThrottlingLogTarget : CompoundTargetBase
@@ -38,12 +38,14 @@ namespace Shared.Util.Logging
                 return;
             }
 
-            if (_tokenTimeThrottler.CheckAllow(logEvent))
+            if (!_tokenTimeThrottler.CheckAllow(logEvent))
             {
-                foreach (var target in Targets)
-                {
-                    target.WriteAsyncLogEvent(logEvent);
-                }
+                return;
+            }
+
+            foreach (var target in Targets)
+            {
+                target.WriteAsyncLogEvent(logEvent);
             }
         }
     }

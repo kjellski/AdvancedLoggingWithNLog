@@ -5,7 +5,7 @@ using NLog;
 using NLog.Common;
 using NLog.Config;
 
-namespace Shared.Util.Logging
+namespace RealWorldExample.FastLane.Logging
 {
     public interface ITokenTimeThrottler
     {
@@ -63,7 +63,7 @@ namespace Shared.Util.Logging
                 {
                     if (throttledEntry.LastCaptured + throttleTimeSpan < now)
                     {
-                        _throttledEntries.Remove(throttledEntry.Md5Sum);
+                        _throttledEntries.Remove(throttledEntry.Token);
 
                         if (throttledEntry.Count > 1)
                         {
